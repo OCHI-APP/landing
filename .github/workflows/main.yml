@@ -25,12 +25,14 @@ jobs:
             set -e
             cd "${{ secrets.DEPLOY_PATH }}"
 
-            git pull --ff-only
-            
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            nvm use 24
+
             node -v
             which node
-            echo $PATH
-            
+
+            git pull --ff-only
             npm ci
             npm run build
 
