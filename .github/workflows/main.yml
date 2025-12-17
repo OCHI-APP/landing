@@ -26,7 +26,11 @@ jobs:
             cd "${{ secrets.DEPLOY_PATH }}"
 
             git pull --ff-only
-
+            
+            node -v
+            which node
+            echo $PATH
+            
             npm ci
             npm run build
 
