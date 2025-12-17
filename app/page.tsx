@@ -9,9 +9,11 @@ import {
   Variants,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import WaitlistModal from "./components/WaitlistModal";
 
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -129,7 +131,10 @@ export default function Home() {
                     Dress with intention — using the pieces you already own.
                   </p>
 
-                  <button className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors self-start group">
+                  <button
+                    onClick={() => setIsWaitlistOpen(true)}
+                    className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors self-start group"
+                  >
                     <span>Join the waitlist</span>
                     <svg
                       className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -188,7 +193,7 @@ export default function Home() {
       <LookFeedbackSection />
 
       {/* How OCHI Works */}
-      <HowOchiWorksSection />
+      <HowOchiWorksSection onJoinWaitlist={() => setIsWaitlistOpen(true)} />
 
       {/* Second Life Section */}
       <SecondLifeSection />
@@ -197,10 +202,15 @@ export default function Home() {
       <FAQSection />
 
       {/* Bottom Banner */}
-      <WaitlistBannerSection />
+      <WaitlistBannerSection onJoinWaitlist={() => setIsWaitlistOpen(true)} />
 
       {/* Footer */}
       <SiteFooter />
+
+      <WaitlistModal
+        open={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
+      />
     </>
   );
 }
@@ -278,7 +288,11 @@ function StyleCarousel() {
   );
 }
 
-function HowOchiWorksSection() {
+function HowOchiWorksSection({
+  onJoinWaitlist,
+}: {
+  onJoinWaitlist: () => void;
+}) {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -360,7 +374,10 @@ function HowOchiWorksSection() {
                 </div>
 
                 <div className="mt-auto pt-5">
-                  <button className="w-full inline-flex items-center justify-between gap-2 bg-[#6B2B2B] text-white px-5 py-4 rounded-xl font-medium hover:opacity-95 transition-opacity group">
+                  <button
+                    onClick={onJoinWaitlist}
+                    className="w-full inline-flex items-center justify-between gap-2 bg-[#6B2B2B] text-white px-5 py-4 rounded-xl font-medium hover:opacity-95 transition-opacity group"
+                  >
                     <span>Join the waitlist</span>
                     <svg
                       className="w-5 h-5 group-hover:translate-x-1 transition-transform"
@@ -606,7 +623,11 @@ function FAQItem({
   );
 }
 
-function WaitlistBannerSection() {
+function WaitlistBannerSection({
+  onJoinWaitlist,
+}: {
+  onJoinWaitlist: () => void;
+}) {
   return (
     <section className="bg-white pb-3 md:pb-4">
       <div className="mx-auto w-full px-3 md:px-4 lg:px-5">
@@ -634,7 +655,10 @@ function WaitlistBannerSection() {
               </h3>
 
               <div className="mt-6 flex justify-center">
-                <button className="inline-flex items-center gap-2 bg-white text-black px-5 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors group">
+                <button
+                  onClick={onJoinWaitlist}
+                  className="inline-flex items-center gap-2 bg-white text-black px-5 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors group"
+                >
                   <span>Join the waitlist</span>
                   <svg
                     className="w-4 h-4 group-hover:translate-x-1 transition-transform"
