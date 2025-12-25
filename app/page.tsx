@@ -74,38 +74,35 @@ export default function Home() {
         </motion.header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col relative z-10">
+        <main className="flex-1 relative z-10 flex items-center justify-center">
           {/* Placeholder for small image visibility logic */}
-          <div className="flex-1 flex items-center justify-center pointer-events-none">
-            {!isExpanded && (
-              <motion.div
-                layoutId="hero-image"
-                className="relative w-full max-w-[400px] aspect-4/3 overflow-hidden rounded-lg border border-gray-200"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <video
-                  className="absolute inset-0 h-full w-full object-cover"
-                  src="/images/video-bg.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  poster="/bg.png"
-                />
-              </motion.div>
-            )}
-          </div>
+          {!isExpanded && (
+            <motion.div
+              layoutId="hero-image"
+              className="relative w-full max-w-[400px] aspect-4/3 overflow-hidden rounded-lg border border-gray-200"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <video
+                className="absolute inset-0 h-full w-full object-cover"
+                src="/images/video-bg.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster="/bg.png"
+              />
+            </motion.div>
+          )}
 
-          {/* Bottom Text Content */}
-          <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-10 md:pb-16 lg:pb-20">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-                {/* Left side - Heading */}
+          {/* Centered Hero Content (overlay) */}
+          <div className="absolute inset-0 px-4 sm:px-6 md:px-10 lg:px-16 flex items-center justify-center">
+            <div className="max-w-6xl mx-auto w-full">
+              <div className="flex flex-col items-center text-center gap-6 sm:gap-8 pointer-events-none">
                 <motion.div
-                  className="lg:col-span-7"
+                  className="w-full"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -119,9 +116,8 @@ export default function Home() {
                   </h1>
                 </motion.div>
 
-                {/* Right side - Subheading and Button */}
                 <motion.div
-                  className="lg:col-span-5 flex flex-col gap-6 justify-en"
+                  className="flex flex-col items-center gap-6"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -130,13 +126,13 @@ export default function Home() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-md mix-blend-difference">
+                  <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-md mx-auto mix-blend-difference">
                     Dress with intention — using the pieces you already own.
                   </p>
 
                   <button
                     onClick={() => setIsWaitlistOpen(true)}
-                    className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors self-start group"
+                    className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-medium hover:bg-white/90 transition-colors self-center group pointer-events-auto"
                   >
                     <span>Join the waitlist</span>
                     <svg
@@ -804,28 +800,6 @@ function LookFeedbackSection() {
                     label="Beige"
                   />
                 </motion.div>
-
-                <motion.div
-                  style={{ opacity: secondOverlayOpacity }}
-                  className="space-y-3"
-                >
-                  <OverlayComment
-                    name="Leonardo"
-                    text="Let's sharpen this. Go bolder."
-                  />
-                  <OverlayComment
-                    name="Mia"
-                    text="This really suits you. Let's highlight this energy."
-                  />
-                  <OverlayComment
-                    name="Marcus"
-                    text="Add structure for a cleaner, more balanced line."
-                  />
-                  <OverlayComment
-                    name="Sofia"
-                    text="Soften the palette — it will look richer."
-                  />
-                </motion.div>
               </div>
 
               {/* Right overlays - partially overlapping */}
@@ -853,8 +827,33 @@ function LookFeedbackSection() {
                 </motion.div>
               </div>
 
+              {/* Second scroll: stacked comment cards (like the reference) */}
+              <motion.div
+                style={{ opacity: secondOverlayOpacity }}
+                className="absolute inset-y-0 -bottom-[40%] left-1/2 -translate-x-[104%] sm:-translate-x-[140%] z-30 flex items-center pointer-events-none"
+              >
+                <div className="space-y-4 sm:space-y-5">
+                  <OverlayReviewCard
+                    name="Leonardo"
+                    text="Let's sharpen this. Go bolder."
+                  />
+                  <OverlayReviewCard
+                    name="Mia"
+                    text="This really suits you. Let's highlight this energy."
+                  />
+                  <OverlayReviewCard
+                    name="Marcus"
+                    text="Add structure for a cleaner, more balanced line."
+                  />
+                  <OverlayReviewCard
+                    name="Sofia"
+                    text="Soften the palette — it will look richer."
+                  />
+                </div>
+              </motion.div>
+
               {/* Bottom speech bubble - overlapping bottom */}
-              <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
+              <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-10 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
                 <motion.div style={{ opacity: firstOverlayOpacity }}>
                   <OverlaySpeech>
                     How is my look today, what do you think?
@@ -925,6 +924,37 @@ function OverlaySpeech({
       className={`bg-white rounded-[22px] shadow-lg px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
     >
       {children}
+    </div>
+  );
+}
+
+function OverlayReviewCard({ name, text }: { name: string; text: string }) {
+  const avatarSrc =
+    name === "Leonardo"
+      ? "/images/Instagram%20Post-1.png"
+      : name === "Mia"
+      ? "/images/Instagram%20Post-2.png"
+      : name === "Marcus"
+      ? "/images/Instagram%20Post-3.png"
+      : "/images/Instagram%20Post-4.png";
+
+  return (
+    <div className="bg-white rounded-[20px] shadow-lg px-4 py-3 w-[210px] sm:w-[320px]">
+      <div className="flex items-center gap-3">
+        <div className="relative h-9 w-9 rounded-full overflow-hidden bg-gray-200 shrink-0">
+          <Image
+            src={avatarSrc}
+            alt={name}
+            fill
+            className="object-cover"
+            sizes="36px"
+          />
+        </div>
+        <p className="text-base sm:text-lg font-medium text-gray-900">{name}</p>
+      </div>
+      <p className="mt-2 text-sm sm:text-lg italic text-gray-800 leading-relaxed">
+        {text}
+      </p>
     </div>
   );
 }
