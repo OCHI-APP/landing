@@ -353,7 +353,7 @@ function HowOchiWorksSection({
 
         {/* Scroll area that drives the step selection */}
         <div className="h-[1200px] sm:h-[1300px] md:h-[1700px]">
-          <div className="md:sticky md:top-24">
+          <div className="sticky top-20 md:top-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
               {/* Left: steps + CTA */}
               <div className="lg:col-span-4 rounded-[18px] bg-[#F7F7F7] border border-black/5 p-5 md:p-6 flex flex-col">
@@ -760,7 +760,7 @@ function LookFeedbackSection() {
     <section ref={sectionRef} className="bg-white py-16 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         <div className="h-[1100px] sm:h-[1250px] md:h-[1800px] relative">
-          <div className="md:sticky md:top-24 flex justify-center">
+          <div className="sticky top-20 md:top-24 flex justify-center">
             <div className="relative w-full max-w-[360px] md:max-w-[420px]">
               {/* Image */}
               <motion.div
@@ -778,28 +778,28 @@ function LookFeedbackSection() {
               </motion.div>
 
               {/* Left overlays - partially overlapping */}
-              <div className="hidden sm:flex absolute inset-y-0 left-0 z-20 flex-col justify-center gap-8 pointer-events-none">
+              <div className="flex absolute inset-y-0 left-0 z-20 flex-col justify-center gap-6 sm:gap-8 pointer-events-none">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-7"
+                  className="space-y-5 sm:space-y-7"
                 >
                   <OverlayPill
-                    className="-translate-x-[78%]"
+                    className="-translate-x-[46%] sm:-translate-x-[78%]"
                     color="#FF7648"
                     label="Coral"
                   />
                   <OverlayPill
-                    className="-translate-x-[78%]"
+                    className="-translate-x-[46%] sm:-translate-x-[78%]"
                     color="#EA3323"
                     label="Red"
                   />
                   <OverlayPill
-                    className="-translate-x-[78%]"
+                    className="-translate-x-[46%] sm:-translate-x-[78%]"
                     color="#D9A51C"
                     label="Turmeric"
                   />
                   <OverlayPill
-                    className="-translate-x-[78%]"
+                    className="-translate-x-[46%] sm:-translate-x-[78%]"
                     color="#D8C7AA"
                     label="Beige"
                   />
@@ -829,20 +829,32 @@ function LookFeedbackSection() {
               </div>
 
               {/* Right overlays - partially overlapping */}
-              <div className="hidden sm:flex absolute inset-y-0 right-0 z-20 flex-col justify-center gap-8 pointer-events-none items-end">
+              <div className="flex absolute inset-y-0 right-0 z-20 flex-col justify-center gap-6 sm:gap-8 pointer-events-none items-end">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-7 flex flex-col items-end"
+                  className="space-y-5 sm:space-y-7 flex flex-col items-end"
                 >
-                  <OverlayLabel className="translate-x-[78%]" label="Summer" />
-                  <OverlayLabel className="translate-x-[78%]" label="T-shirts" />
-                  <OverlayLabel className="translate-x-[78%]" label="Casual" />
-                  <OverlayLabel className="translate-x-[78%]" label="Cotton" />
+                  <OverlayLabel
+                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    label="Summer"
+                  />
+                  <OverlayLabel
+                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    label="T-shirts"
+                  />
+                  <OverlayLabel
+                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    label="Casual"
+                  />
+                  <OverlayLabel
+                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    label="Cotton"
+                  />
                 </motion.div>
               </div>
 
               {/* Bottom speech bubble - overlapping bottom */}
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[min(520px,92%)] pointer-events-none z-20">
+              <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
                 <motion.div style={{ opacity: firstOverlayOpacity }}>
                   <OverlaySpeech>
                     How is my look today, what do you think?
@@ -874,10 +886,10 @@ function OverlayPill({
 }) {
   return (
     <div
-      className={`flex items-center gap-3 bg-white rounded-full shadow-md px-6 py-4 text-base md:text-lg text-gray-900 ${className}`}
+      className={`flex items-center gap-3 bg-white rounded-full shadow-md px-3 py-2 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
     >
       <span
-        className="h-5 w-5 rounded-full border border-black/10"
+        className="h-4 w-4 sm:h-5 sm:w-5 rounded-full border border-black/10"
         style={{ backgroundColor: color }}
       ></span>
       <span>{label}</span>
@@ -894,7 +906,7 @@ function OverlayLabel({
 }) {
   return (
     <div
-      className={`bg-white rounded-[18px] shadow-md px-6 py-4 text-base md:text-lg text-gray-900 ${className}`}
+      className={`bg-white rounded-[18px] shadow-md px-3 py-2 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
     >
       {label}
     </div>
@@ -910,7 +922,7 @@ function OverlaySpeech({
 }) {
   return (
     <div
-      className={`bg-white rounded-[22px] shadow-lg px-6 py-5 text-base md:text-lg text-gray-900 ${className}`}
+      className={`bg-white rounded-[22px] shadow-lg px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
     >
       {children}
     </div>
@@ -995,7 +1007,7 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("default")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
               activeScreen === "default" ? "shadow-sm" : ""
             }`}
           >
@@ -1003,6 +1015,7 @@ function BentoSection() {
               +
             </span>
             <div>
+              <WardrobeIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">
                 Upload Your Wardrobe
               </p>
@@ -1046,7 +1059,7 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("aiStylists")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
               activeScreen === "aiStylists" ? "shadow-sm" : ""
             }`}
           >
@@ -1054,6 +1067,7 @@ function BentoSection() {
               +
             </span>
             <div>
+              <SparkleIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">AI Stylists</p>
               <p className="text-gray-500 text-sm mt-2">
                 Looks tailored to you.
@@ -1073,6 +1087,7 @@ function BentoSection() {
               +
             </span>
             <div>
+              <MagicWandIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">
                 Daily Suggestions
               </p>
@@ -1094,26 +1109,11 @@ function BentoSection() {
               +
             </span>
             <div>
+              <TargetIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">Style Goals</p>
               <p className="text-gray-500 text-sm mt-2">
                 Stay aligned with your direction.
               </p>
-            </div>
-          </motion.button>
-
-          <motion.button
-            variants={item}
-            type="button"
-            onClick={() => setActiveScreen("styleGoals")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "styleGoals" ? "shadow-sm" : ""
-            }`}
-          >
-            <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
-              +
-            </span>
-            <div>
-              <p className="text-lg font-semibold text-gray-900">Style Goals</p>
             </div>
           </motion.button>
 
@@ -1129,6 +1129,7 @@ function BentoSection() {
               +
             </span>
             <div>
+              <CalendarIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">
                 Outfit Planner
               </p>
@@ -1147,6 +1148,7 @@ function BentoSection() {
             }`}
           >
             <div>
+              <HeartIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">
                 Smart Donation
               </p>
@@ -1158,5 +1160,141 @@ function BentoSection() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M39 7.5H9A1.5 1.5 0 0 0 7.5 9v30A1.5 1.5 0 0 0 9 40.5h30a1.5 1.5 0 0 0 1.5-1.5V9A1.5 1.5 0 0 0 39 7.5Zm-6-3v6m-18-6v6m-7.5 6h33"
+      />
+      <path
+        fill="currentColor"
+        d="M24 27a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm8.25 0a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm-16.5 7.5a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm8.25 0a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Zm8.25 0a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"
+      />
+    </svg>
+  );
+}
+
+function SparkleIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M15.8 32.2 5.472 28.392a1.485 1.485 0 0 1 0-2.786l10.33-3.806 3.806-10.33a1.485 1.485 0 0 1 2.786 0L26.2 21.8l10.33 3.806a1.485 1.485 0 0 1 0 2.786L26.199 32.2l-3.806 10.33a1.485 1.485 0 0 1-2.786 0L15.8 32.199ZM33 3v9m9 1.5v6m-13.5-12h9m1.5 9h6"
+      />
+    </svg>
+  );
+}
+
+function WardrobeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M32.118 38.048H42m-4.94-4.941v9.882M18.796 19.785h-1.647m13.175 0h-1.647"
+      />
+      <path
+        fill="currentColor"
+        d="M37.571 5.108c.578 0 1.135.2 1.577.564l.183.165.165.182c.363.443.563 1 .564 1.577V29.25h-3V8.108H25.236v29.94h2.808v3H9.902a2.489 2.489 0 0 1-2.488-2.489V7.596c0-.66.262-1.293.729-1.76l.182-.164a2.49 2.49 0 0 1 1.577-.564h27.67Zm-27.157 32.94h11.822V8.108H10.414v29.94Z"
+      />
+    </svg>
+  );
+}
+
+function TargetIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M24 24 42 6m-5.273 5.273a17.978 17.978 0 1 0 3.52 4.966"
+      />
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M30.364 17.636a9 9 0 1 0 2.625 5.85"
+      />
+    </svg>
+  );
+}
+
+function MagicWandIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M40.5 24v9M36 28.5h9m-30-21v9M10.5 12h9m12 22.5v6m-3-3h6M27 15l6 6m1.06-13.061L7.94 34.06a1.5 1.5 0 0 0 0 2.122l3.878 3.878a1.5 1.5 0 0 0 2.121 0L40.06 13.938a1.5 1.5 0 0 0 0-2.12l-3.878-3.879a1.5 1.5 0 0 0-2.122 0Z"
+      />
+    </svg>
+  );
+}
+
+function HeartIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M6 25.5h7.5l3-4.5 6 9 3-4.5H30"
+      />
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3"
+        d="M4.5 19.5v-.375A10.125 10.125 0 0 1 14.625 9c4.236 0 7.864 2.308 9.375 6 1.511-3.692 5.14-6 9.375-6A10.125 10.125 0 0 1 43.5 19.125C43.5 31.5 24 42 24 42s-7.875-4.237-13.609-10.5"
+      />
+    </svg>
   );
 }
