@@ -85,12 +85,15 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Image
-                  src="/bg.png"
-                  alt="Woman walking on pathway"
-                  fill
-                  className="object-cover"
-                  priority
+                <video
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src="/images/video-bg.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster="/bg.png"
                 />
               </motion.div>
             )}
@@ -156,7 +159,7 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Expanded Fullscreen Image */}
+        {/* Expanded Fullscreen Video */}
         {isExpanded && (
           <motion.div
             layoutId="hero-image"
@@ -166,12 +169,15 @@ export default function Home() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <Image
-              src="/bg.png"
-              alt="Woman walking on pathway"
-              fill
-              className="object-cover"
-              priority
+            <video
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/images/video-bg.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/bg.png"
             />
             <motion.div
               className="absolute inset-0 bg-black/30"
@@ -759,7 +765,7 @@ function LookFeedbackSection() {
               {/* Image */}
               <motion.div
                 style={{ opacity: imageOpacity }}
-                className="relative w-full aspect-3/4 rounded-[24px] overflow-hidden shadow-lg"
+                className="relative z-10 w-full aspect-3/4 rounded-[32px] overflow-hidden shadow-lg"
               >
                 <Image
                   src="/images/girl.png"
@@ -772,15 +778,31 @@ function LookFeedbackSection() {
               </motion.div>
 
               {/* Left overlays - partially overlapping */}
-              <div className="hidden sm:flex absolute inset-y-0 -left-6 md:-left-12 flex-col justify-center gap-3 pointer-events-none">
+              <div className="hidden sm:flex absolute inset-y-0 left-0 z-20 flex-col justify-center gap-8 pointer-events-none">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-3"
+                  className="space-y-7"
                 >
-                  <OverlayPill color="#FF7648" label="Coral" />
-                  <OverlayPill color="#EA3323" label="Red" />
-                  <OverlayPill color="#D9A51C" label="Turmeric" />
-                  <OverlayPill color="#D8C7AA" label="Beige" />
+                  <OverlayPill
+                    className="-translate-x-[78%]"
+                    color="#FF7648"
+                    label="Coral"
+                  />
+                  <OverlayPill
+                    className="-translate-x-[78%]"
+                    color="#EA3323"
+                    label="Red"
+                  />
+                  <OverlayPill
+                    className="-translate-x-[78%]"
+                    color="#D9A51C"
+                    label="Turmeric"
+                  />
+                  <OverlayPill
+                    className="-translate-x-[78%]"
+                    color="#D8C7AA"
+                    label="Beige"
+                  />
                 </motion.div>
 
                 <motion.div
@@ -807,20 +829,20 @@ function LookFeedbackSection() {
               </div>
 
               {/* Right overlays - partially overlapping */}
-              <div className="hidden sm:flex absolute inset-y-0 -right-6 md:-right-12 flex-col justify-center gap-3 pointer-events-none items-end">
+              <div className="hidden sm:flex absolute inset-y-0 right-0 z-20 flex-col justify-center gap-8 pointer-events-none items-end">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-3 flex flex-col items-end"
+                  className="space-y-7 flex flex-col items-end"
                 >
-                  <OverlayLabel label="Summer" />
-                  <OverlayLabel label="T-shirts" />
-                  <OverlayLabel label="Casual" />
-                  <OverlayLabel label="Cotton" />
+                  <OverlayLabel className="translate-x-[78%]" label="Summer" />
+                  <OverlayLabel className="translate-x-[78%]" label="T-shirts" />
+                  <OverlayLabel className="translate-x-[78%]" label="Casual" />
+                  <OverlayLabel className="translate-x-[78%]" label="Cotton" />
                 </motion.div>
               </div>
 
               {/* Bottom speech bubble - overlapping bottom */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] pointer-events-none z-10">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[min(520px,92%)] pointer-events-none z-20">
                 <motion.div style={{ opacity: firstOverlayOpacity }}>
                   <OverlaySpeech>
                     How is my look today, what do you think?
@@ -852,10 +874,10 @@ function OverlayPill({
 }) {
   return (
     <div
-      className={`flex items-center gap-2 bg-white rounded-full shadow-sm px-3 py-2 text-sm text-gray-800 ${className}`}
+      className={`flex items-center gap-3 bg-white rounded-full shadow-md px-6 py-4 text-base md:text-lg text-gray-900 ${className}`}
     >
       <span
-        className="h-3.5 w-3.5 rounded-full border border-black/10"
+        className="h-5 w-5 rounded-full border border-black/10"
         style={{ backgroundColor: color }}
       ></span>
       <span>{label}</span>
@@ -872,7 +894,7 @@ function OverlayLabel({
 }) {
   return (
     <div
-      className={`bg-white rounded-[14px] shadow-sm px-3 py-2 text-xs text-gray-800 ${className}`}
+      className={`bg-white rounded-[18px] shadow-md px-6 py-4 text-base md:text-lg text-gray-900 ${className}`}
     >
       {label}
     </div>
@@ -888,7 +910,7 @@ function OverlaySpeech({
 }) {
   return (
     <div
-      className={`bg-white rounded-[16px] shadow-md px-4 py-3 text-sm text-gray-800 ${className}`}
+      className={`bg-white rounded-[22px] shadow-lg px-6 py-5 text-base md:text-lg text-gray-900 ${className}`}
     >
       {children}
     </div>
@@ -915,6 +937,18 @@ function OverlayComment({
 }
 
 function BentoSection() {
+  const screens = {
+    default: { src: "/images/phone.png", alt: "OCHI app on phone" },
+    aiStylists: { src: "/images/AI%20Stylists.png", alt: "AI Stylists" },
+    daily: { src: "/images/Daily%20Suggestions.png", alt: "Daily Suggestions" },
+    styleGoals: { src: "/images/Style%20Goals.png", alt: "Style Goals" },
+    planner: { src: "/images/Planner.png", alt: "Outfit Planner" },
+    donation: { src: "/images/Donation.png", alt: "Smart Donation" },
+  } as const;
+
+  type ScreenKey = keyof typeof screens;
+  const [activeScreen, setActiveScreen] = useState<ScreenKey>("default");
+
   const container: Variants = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.08 } },
@@ -957,9 +991,13 @@ function BentoSection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("default")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "default" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -972,7 +1010,7 @@ function BentoSection() {
                 Add, crop, tag, and organize.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
 
           <motion.div
             variants={item}
@@ -982,20 +1020,35 @@ function BentoSection() {
               +
             </span>
             <div className="relative w-full h-full max-w-[260px]">
-              <Image
-                src="/images/phone.png"
-                alt="Wardrobe app on phone"
-                fill
-                className="object-contain object-bottom"
-                sizes="260px"
-                priority
-              />
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={activeScreen}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={screens[activeScreen].src}
+                    alt={screens[activeScreen].alt}
+                    fill
+                    className="object-contain object-bottom"
+                    sizes="260px"
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("aiStylists")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "aiStylists" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1006,11 +1059,15 @@ function BentoSection() {
                 Looks tailored to you.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("daily")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "daily" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1023,11 +1080,15 @@ function BentoSection() {
                 Outfits ready every morning.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("styleGoals")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "styleGoals" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1038,11 +1099,15 @@ function BentoSection() {
                 Stay aligned with your direction.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("styleGoals")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "styleGoals" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1050,11 +1115,15 @@ function BentoSection() {
             <div>
               <p className="text-lg font-semibold text-gray-900">Style Goals</p>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="relative rounded-[10px] bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("planner")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "planner" ? "shadow-sm" : ""
+            }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1067,11 +1136,15 @@ function BentoSection() {
                 Plan trips and big days.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
 
-          <motion.div
+          <motion.button
             variants={item}
-            className="rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6"
+            type="button"
+            onClick={() => setActiveScreen("donation")}
+            className={`rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
+              activeScreen === "donation" ? "shadow-sm" : ""
+            }`}
           >
             <div>
               <p className="text-lg font-semibold text-gray-900">
@@ -1081,7 +1154,7 @@ function BentoSection() {
                 Let go with intention.
               </p>
             </div>
-          </motion.div>
+          </motion.button>
         </motion.div>
       </div>
     </section>
