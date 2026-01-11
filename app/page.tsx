@@ -92,7 +92,6 @@ export default function Home() {
                 muted
                 playsInline
                 preload="metadata"
-                poster="/bg.png"
               />
             </motion.div>
           )}
@@ -173,7 +172,6 @@ export default function Home() {
               muted
               playsInline
               preload="auto"
-              poster="/bg.png"
             />
             <motion.div
               className="absolute inset-0 bg-black/30"
