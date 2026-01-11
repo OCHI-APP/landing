@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     // exist outside this project (e.g. /Users/rahim/package-lock.json).
     root: projectRoot,
   },
+  output: "standalone",
   async headers() {
     return [
       // Public assets under /public/images/* can get stuck in aggressive browser/CDN caches
