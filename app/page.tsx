@@ -35,30 +35,26 @@ export default function Home() {
         >
           <div className="flex items-center gap-2">
             <span
-              className={`h-1.5 w-1.5 rounded-full transition-colors duration-700 ${
-                isExpanded ? "bg-white" : "bg-black"
-              }`}
+              className={`h-1.5 w-1.5 rounded-full transition-colors duration-700 ${isExpanded ? "bg-white" : "bg-black"
+                }`}
             ></span>
             <span
-              className={`font-medium transition-colors duration-700 ${
-                isExpanded ? "text-white" : "text-black"
-              }`}
+              className={`font-medium transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
+                }`}
             >
               Menu
             </span>
           </div>
           <div className="flex items-center gap-2">
             <span
-              className={`font-medium transition-colors duration-700 ${
-                isExpanded ? "text-white" : "text-black"
-              }`}
+              className={`font-medium transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
+                }`}
             >
               Start Free Trial
             </span>
             <svg
-              className={`h-4 w-4 transition-colors duration-700 ${
-                isExpanded ? "text-white" : "text-black"
-              }`}
+              className={`h-4 w-4 transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -359,11 +355,10 @@ function HowOchiWorksSection({
                         key={step.title}
                         type="button"
                         onClick={() => setActiveStep(idx as 0 | 1 | 2)}
-                        className={`w-full text-left rounded-[12px] px-4 py-3 transition-colors ${
-                          isActive
-                            ? "bg-white"
-                            : "bg-transparent hover:bg-white/70"
-                        }`}
+                        className={`w-full text-left rounded-[12px] px-4 py-3 transition-colors ${isActive
+                          ? "bg-white"
+                          : "bg-transparent hover:bg-white/70"
+                          }`}
                       >
                         <span className="text-sm md:text-base text-gray-900">
                           {idx + 1}. {step.title}
@@ -473,9 +468,8 @@ function SecondLifeSection() {
               {items.map((text, idx) => (
                 <div
                   key={text}
-                  className={`px-5 py-4 text-sm md:text-base text-gray-900 ${
-                    idx === 0 ? "" : "border-t border-black/10"
-                  }`}
+                  className={`px-5 py-4 text-sm md:text-base text-gray-900 ${idx === 0 ? "" : "border-t border-black/10"
+                    }`}
                 >
                   {text}
                 </div>
@@ -487,7 +481,7 @@ function SecondLifeSection() {
           <div className="lg:col-span-8">
             <div className="relative w-full h-[220px] md:h-[320px] lg:h-[360px] rounded-[18px] overflow-hidden bg-[#F2F2F2] border border-black/10">
               <Image
-                src="/bg.png"
+                src="/images/donation.jpg"
                 alt="Second life"
                 fill
                 className="object-cover"
@@ -633,7 +627,7 @@ function WaitlistBannerSection({
       <div className="mx-auto w-full px-3 md:px-4 lg:px-5">
         <div className="relative overflow-hidden rounded-[28px] h-[380px] md:h-[520px] bg-black">
           <Image
-            src="/images/girl.png"
+            src="/images/footer.jpg"
             alt="OCHI"
             fill
             className="object-cover"
@@ -713,10 +707,10 @@ function SiteFooter() {
               </a>
             </div>
             <div className="flex flex-col gap-3 items-start md:items-end md:text-right">
-              <a className="hover:underline" href="#">
+              <a className="hover:underline" href="/terms-of-use">
                 Terms of Use
               </a>
-              <a className="hover:underline" href="#">
+              <a className="hover:underline" href="/privacy-policy">
                 Privacy Policy
               </a>
             </div>
@@ -746,14 +740,14 @@ function LookFeedbackSection() {
   );
   const secondOverlayOpacity = useTransform(
     scrollYProgress,
-    [0.55, 0.65, 0.8, 0.95],
+    [0.4, 0.5, 0.6, 0.75],
     [0, 0, 1, 1]
   );
 
   return (
     <section ref={sectionRef} className="bg-white py-16 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-        <div className="h-[1100px] sm:h-[1250px] md:h-[1800px] relative">
+        <div className="h-[900px] sm:h-[1000px] md:h-[1300px] relative">
           <div className="sticky top-20 md:top-24 flex justify-center">
             <div className="relative w-full max-w-[360px] md:max-w-[420px]">
               {/* Image */}
@@ -762,7 +756,7 @@ function LookFeedbackSection() {
                 className="relative z-10 w-full aspect-3/4 rounded-[32px] overflow-hidden shadow-lg"
               >
                 <Image
-                  src="/images/girl.png"
+                  src="/images/polina.jpg"
                   alt="Styled look"
                   fill
                   className="object-cover"
@@ -779,23 +773,23 @@ function LookFeedbackSection() {
                 >
                   <OverlayPill
                     className="-translate-x-[46%] sm:-translate-x-[78%]"
-                    color="#FF7648"
-                    label="Coral"
+                    color="#1A1A1A"
+                    label="Black"
                   />
                   <OverlayPill
                     className="-translate-x-[46%] sm:-translate-x-[78%]"
-                    color="#EA3323"
-                    label="Red"
+                    color="#4A6D8C"
+                    label="Denim"
                   />
                   <OverlayPill
                     className="-translate-x-[46%] sm:-translate-x-[78%]"
-                    color="#D9A51C"
-                    label="Turmeric"
+                    color="#D4C5A9"
+                    label="Linen"
                   />
                   <OverlayPill
                     className="-translate-x-[46%] sm:-translate-x-[78%]"
-                    color="#D8C7AA"
-                    label="Beige"
+                    color="#2C2C2C"
+                    label="Blazer"
                   />
                 </motion.div>
               </div>
@@ -808,11 +802,11 @@ function LookFeedbackSection() {
                 >
                   <OverlayLabel
                     className="translate-x-[46%] sm:translate-x-[78%]"
-                    label="Summer"
+                    label="Spring"
                   />
                   <OverlayLabel
                     className="translate-x-[46%] sm:translate-x-[78%]"
-                    label="T-shirts"
+                    label="Mom jeans"
                   />
                   <OverlayLabel
                     className="translate-x-[46%] sm:translate-x-[78%]"
@@ -820,7 +814,7 @@ function LookFeedbackSection() {
                   />
                   <OverlayLabel
                     className="translate-x-[46%] sm:translate-x-[78%]"
-                    label="Cotton"
+                    label="Business"
                   />
                 </motion.div>
               </div>
@@ -828,7 +822,7 @@ function LookFeedbackSection() {
               {/* Second scroll: stacked comment cards (like the reference) */}
               <motion.div
                 style={{ opacity: secondOverlayOpacity }}
-                className="absolute inset-y-0 -bottom-[40%] left-1/2 -translate-x-[104%] sm:-translate-x-[140%] z-30 flex items-center pointer-events-none"
+                className="absolute inset-y-0 -bottom-[20%] left-1/2 -translate-x-[104%] sm:-translate-x-[140%] z-30 flex items-center pointer-events-none"
               >
                 <div className="space-y-4 sm:space-y-5">
                   <OverlayReviewCard
@@ -851,12 +845,7 @@ function LookFeedbackSection() {
               </motion.div>
 
               {/* Bottom speech bubble - overlapping bottom */}
-              <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-10 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
-                <motion.div style={{ opacity: firstOverlayOpacity }}>
-                  <OverlaySpeech>
-                    How is my look today, what do you think?
-                  </OverlaySpeech>
-                </motion.div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-10 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
 
                 <motion.div style={{ opacity: secondOverlayOpacity }}>
                   <OverlaySpeech>
@@ -931,10 +920,10 @@ function OverlayReviewCard({ name, text }: { name: string; text: string }) {
     name === "Leonardo"
       ? "/images/Instagram%20Post-1.png"
       : name === "Mia"
-      ? "/images/Instagram%20Post-2.png"
-      : name === "Marcus"
-      ? "/images/Instagram%20Post-3.png"
-      : "/images/Instagram%20Post-4.png";
+        ? "/images/Instagram%20Post-2.png"
+        : name === "Marcus"
+          ? "/images/Instagram%20Post-3.png"
+          : "/images/Instagram%20Post-4.png";
 
   return (
     <div className="bg-white rounded-[20px] shadow-lg px-4 py-3 w-[210px] sm:w-[320px]">
@@ -1035,9 +1024,9 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("default")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "default" ? "shadow-sm" : ""
-            }`}
+            onMouseEnter={() => setActiveScreen("default")}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "default" ? "shadow-sm" : ""
+              }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1087,9 +1076,8 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("aiStylists")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "aiStylists" ? "shadow-sm" : ""
-            }`}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "aiStylists" ? "shadow-sm" : ""
+              }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1107,9 +1095,8 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("daily")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "daily" ? "shadow-sm" : ""
-            }`}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "daily" ? "shadow-sm" : ""
+              }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1129,9 +1116,8 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("styleGoals")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "styleGoals" ? "shadow-sm" : ""
-            }`}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-4 md:row-span-2 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "styleGoals" ? "shadow-sm" : ""
+              }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1149,9 +1135,8 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("planner")}
-            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "planner" ? "shadow-sm" : ""
-            }`}
+            className={`relative rounded-[10px] bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "planner" ? "shadow-sm" : ""
+              }`}
           >
             <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
               +
@@ -1171,9 +1156,8 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("donation")}
-            className={`rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${
-              activeScreen === "donation" ? "shadow-sm" : ""
-            }`}
+            className={`rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "donation" ? "shadow-sm" : ""
+              }`}
           >
             <div>
               <HeartIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
