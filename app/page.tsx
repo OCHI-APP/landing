@@ -299,17 +299,20 @@ function HowOchiWorksSection({
     {
       title: "Choose your style goal",
       description:
-        "Polished, minimal or bold — choose what you’re moving toward.",
+        "Polished, minimal or bold — choose what you're moving toward.",
+      phone: "/images/Style%20Goals.png",
     },
     {
       title: "Upload your wardrobe",
       description:
         "Add your pieces once, then build outfits from what you already own.",
+      phone: "/images/phone.png",
     },
     {
       title: "Get daily looks",
       description:
-        "Every day you’ll get looks aligned to your goal — ready to wear.",
+        "Every day you'll get looks aligned to your goal — ready to wear.",
+      phone: "/images/Daily%20Suggestions.png",
     },
   ] as const;
 
@@ -408,19 +411,26 @@ function HowOchiWorksSection({
               <div className="lg:col-span-4 rounded-[18px] bg-[#F7F7F7] border border-black/5 pt-5 px-5 pb-0 md:pt-6 md:px-6 md:pb-0 flex items-end justify-center">
                 <div className="relative w-full max-w-[360px]">
                   <div className="relative w-full h-[340px] md:h-[380px] overflow-hidden flex justify-center">
-                    <motion.div
-                      style={{ y: phoneY }}
-                      className="relative w-[290px] md:w-[320px] h-[700px]"
-                    >
-                      <Image
-                        src="/images/phone.png"
-                        alt="OCHI app on phone"
-                        fill
-                        className="object-contain object-top"
-                        sizes="320px"
-                        priority={false}
-                      />
-                    </motion.div>
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.div
+                        key={activeStep}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        style={{ y: phoneY }}
+                        className="relative w-[290px] md:w-[320px] h-[700px]"
+                      >
+                        <Image
+                          src={steps[activeStep].phone}
+                          alt={steps[activeStep].title}
+                          fill
+                          className="object-contain object-top"
+                          sizes="320px"
+                          priority={false}
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
@@ -500,18 +510,39 @@ function FAQSection() {
   const faqs = [
     {
       q: "How does OCHI create my outfits?",
-      a: "From you, the AI version supports up to 60 items — just enough for OCHI to learn your style, understand what you actually wear and give accurate, realistic outfit suggestions. This number will grow as we introduce deeper wardrobe analytics.",
+      a: "OCHI builds outfits from your actual wardrobe — not abstract fashion sets. It analyzes your uploaded pieces, your style preferences, your onboarding answers, and your current goal. Based on this, OCHI considers silhouettes, colors, weather, and the vibe you want to project — offering looks that feel aligned, wearable, and realistic for your day-to-day life.",
     },
-    { q: "Who are the AI stylists and how do they differ?", a: "" },
-    { q: "How does the donation feature work in real life?", a: "" },
-    { q: "Do I need to upload everything at once?", a: "" },
-    { q: "Is OCHI free to use?", a: "" },
-    { q: "Can I change my style goal later?", a: "" },
-    { q: "How many items can I add to my wardrobe?", a: "" },
-    { q: "How often can I get styling advice?", a: "" },
+    {
+      q: "Who are the AI stylists and how do they differ?",
+      a: "Each AI stylist inside OCHI is a different \"voice\" with its own personality — from a bold fashion critic to a calm professional or a supportive friend. They all use the same underlying system but offer different perspectives and tones. Their role is to help you see your outfit from multiple angles and choose the advice that resonates with how you want to feel today.",
+    },
+    {
+      q: "How does the donation feature work in real life?",
+      a: "If something in your wardrobe no longer serves you, you can pass it to someone nearby. Mark the item as Donation, choose a person from the list of users interested in it, and arrange a simple handover. Once the item is given, it automatically leaves your wardrobe and appears in the wardrobe of the new owner. This makes giving clothes a second life fast, local, and frictionless — no selling, no listings, no hassle.",
+    },
+    {
+      q: "Do I need to upload everything at once?",
+      a: "Not at all. You can upload your wardrobe gradually. OCHI starts working with whatever you add — and the more items you upload, the more accurate the suggestions become. Even with just a few basics, the app can already create outfits and help you refine your style choices.",
+    },
+    {
+      q: "Is OCHI free to use?",
+      a: "Yes — the core version of OCHI is free. You can upload your wardrobe, receive outfit suggestions, save looks, set and change your goals, and use the donation feature at no cost. We'll introduce extended features later, but the essential experience will always remain accessible.",
+    },
+    {
+      q: "Can I change my style goal later?",
+      a: "Yes, your goal can be updated anytime. Your life changes, your style evolves — and OCHI adjusts with you. Whether you shift toward confidence, simplicity, creativity or conscious choices, the app recalibrates your reminders and outfit logic to match your new direction.",
+    },
+    {
+      q: "How many items can I add to my wardrobe?",
+      a: "For now, the early version supports up to 50 items — just enough for OCHI to learn your style, understand what you actually wear, and give accurate, realistic outfit suggestions. This number will grow as we introduce deeper wardrobe analytics.",
+    },
+    {
+      q: "How often can I get styling advice from the AI stylists?",
+      a: "You can upload up to 8 photos per month across the four stylist chats to get personalized guidance, outfit breakdowns, and clear suggestions for your look.",
+    },
   ] as const;
 
-  const [openIdx, setOpenIdx] = useState<number | null>(6); // open the same card as in the reference
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
     <section className="bg-white pt-8 pb-14 md:pt-10 md:pb-20">
@@ -526,7 +557,7 @@ function FAQSection() {
           Frequently Asked questions
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 items-start">
           {faqs.map((item, idx) => (
             <FAQItem
               key={item.q}
@@ -696,13 +727,13 @@ function SiteFooter() {
 
           <div className="grid grid-cols-2 gap-x-12 md:gap-x-16 gap-y-3 text-sm text-gray-800">
             <div className="flex flex-col gap-3 items-start md:items-end md:text-right">
-              <a className="hover:underline" href="#">
+              <a className="hover:underline" href="https://drive.google.com/file/d/170BsSVAGVXWag-cTssWgBxBObSlVite0/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                 For Stylists
               </a>
-              <a className="hover:underline" href="#">
+              <a className="hover:underline" href="https://drive.google.com/file/d/17i86P1ljM5aoe9lfkRQSKAh8unWrzmQa/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                 For Partners
               </a>
-              <a className="hover:underline" href="#">
+              <a className="hover:underline" href="https://drive.google.com/file/d/1XuQB-kP0bFb_L1e1Nmfi9ysdqu5NkRDo/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                 For Investors
               </a>
             </div>
