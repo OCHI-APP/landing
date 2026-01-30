@@ -33,40 +33,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="flex items-center gap-2">
-            <span
-              className={`h-1.5 w-1.5 rounded-full transition-colors duration-700 ${isExpanded ? "bg-white" : "bg-black"
-                }`}
-            ></span>
-            <span
-              className={`font-medium transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
-                }`}
-            >
-              Menu
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span
-              className={`font-medium transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
-                }`}
-            >
-              Start Free Trial
-            </span>
-            <svg
-              className={`h-4 w-4 transition-colors duration-700 ${isExpanded ? "text-white" : "text-black"
-                }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
+
         </motion.header>
 
         {/* Main Content */}
@@ -121,7 +88,7 @@ export default function Home() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-md mx-auto mix-blend-difference">
+                  <p className="text-xs sm:text-sm md:text-base text-white/90 max-w-md mx-auto mix-blend-difference">
                     Dress with intention — using the pieces you already own.
                   </p>
 
@@ -756,69 +723,70 @@ function LookFeedbackSection() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start 0.8", "end 0.2"],
   });
 
+  // Animation phases based on scroll progress
   const imageOpacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.3],
+    [0, 0.1, 0.2],
     [0, 0.6, 1]
   );
   const firstOverlayOpacity = useTransform(
     scrollYProgress,
-    [0.2, 0.35, 0.5, 0.6],
+    [0.15, 0.25, 0.4, 0.5],
     [0, 1, 1, 0]
   );
   const secondOverlayOpacity = useTransform(
     scrollYProgress,
-    [0.4, 0.5, 0.6, 0.75],
-    [0, 0, 1, 1]
+    [0.4, 0.5, 0.7, 0.85],
+    [0, 1, 1, 1]
   );
 
   return (
-    <section ref={sectionRef} className="bg-white py-16 md:py-28">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-        <div className="h-[900px] sm:h-[1000px] md:h-[1300px] relative">
-          <div className="sticky top-20 md:top-24 flex justify-center">
-            <div className="relative w-full max-w-[360px] md:max-w-[420px]">
+    <section ref={sectionRef} className="bg-white py-8 sm:py-12 md:py-20">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-10 lg:px-16">
+        <div className="h-[600px] sm:h-[750px] md:h-[950px] relative">
+          <div className="sticky top-20 sm:top-24 md:top-28 flex justify-center">
+            <div className="relative w-full max-w-[220px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[420px]">
               {/* Image */}
               <motion.div
                 style={{ opacity: imageOpacity }}
-                className="relative z-10 w-full aspect-3/4 rounded-[32px] overflow-hidden shadow-lg"
+                className="relative z-10 w-full aspect-[3/4] rounded-[20px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden shadow-lg"
               >
                 <Image
                   src="/images/polina.jpg"
                   alt="Styled look"
                   fill
                   className="object-cover"
-                  sizes="420px"
+                  sizes="(max-width: 640px) 220px, (max-width: 768px) 300px, 420px"
                   priority
                 />
               </motion.div>
 
               {/* Left overlays - partially overlapping */}
-              <div className="flex absolute inset-y-0 left-0 z-20 flex-col justify-center gap-6 sm:gap-8 pointer-events-none">
+              <div className="flex absolute inset-y-0 left-0 z-20 flex-col justify-center gap-2 sm:gap-4 md:gap-6 pointer-events-none">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-5 sm:space-y-7"
+                  className="space-y-2 sm:space-y-4 md:space-y-6"
                 >
                   <OverlayPill
-                    className="-translate-x-[46%] sm:-translate-x-[78%]"
+                    className="-translate-x-[25%] sm:-translate-x-[40%] md:-translate-x-[70%]"
                     color="#1A1A1A"
                     label="Black"
                   />
                   <OverlayPill
-                    className="-translate-x-[46%] sm:-translate-x-[78%]"
+                    className="-translate-x-[25%] sm:-translate-x-[40%] md:-translate-x-[70%]"
                     color="#4A6D8C"
                     label="Denim"
                   />
                   <OverlayPill
-                    className="-translate-x-[46%] sm:-translate-x-[78%]"
+                    className="-translate-x-[25%] sm:-translate-x-[40%] md:-translate-x-[70%]"
                     color="#D4C5A9"
                     label="Linen"
                   />
                   <OverlayPill
-                    className="-translate-x-[46%] sm:-translate-x-[78%]"
+                    className="-translate-x-[25%] sm:-translate-x-[40%] md:-translate-x-[70%]"
                     color="#2C2C2C"
                     label="Blazer"
                   />
@@ -826,36 +794,36 @@ function LookFeedbackSection() {
               </div>
 
               {/* Right overlays - partially overlapping */}
-              <div className="flex absolute inset-y-0 right-0 z-20 flex-col justify-center gap-6 sm:gap-8 pointer-events-none items-end">
+              <div className="flex absolute inset-y-0 right-0 z-20 flex-col justify-center gap-2 sm:gap-4 md:gap-6 pointer-events-none items-end">
                 <motion.div
                   style={{ opacity: firstOverlayOpacity }}
-                  className="space-y-5 sm:space-y-7 flex flex-col items-end"
+                  className="space-y-2 sm:space-y-4 md:space-y-6 flex flex-col items-end"
                 >
                   <OverlayLabel
-                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    className="translate-x-[25%] sm:translate-x-[40%] md:translate-x-[70%]"
                     label="Spring"
                   />
                   <OverlayLabel
-                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    className="translate-x-[25%] sm:translate-x-[40%] md:translate-x-[70%]"
                     label="Mom jeans"
                   />
                   <OverlayLabel
-                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    className="translate-x-[25%] sm:translate-x-[40%] md:translate-x-[70%]"
                     label="Casual"
                   />
                   <OverlayLabel
-                    className="translate-x-[46%] sm:translate-x-[78%]"
+                    className="translate-x-[25%] sm:translate-x-[40%] md:translate-x-[70%]"
                     label="Business"
                   />
                 </motion.div>
               </div>
 
-              {/* Second scroll: stacked comment cards (like the reference) */}
+              {/* Second scroll: stacked comment cards */}
               <motion.div
                 style={{ opacity: secondOverlayOpacity }}
-                className="absolute inset-y-0 -bottom-[20%] left-1/2 -translate-x-[104%] sm:-translate-x-[140%] z-30 flex items-center pointer-events-none"
+                className="absolute inset-y-0 -bottom-[10%] left-1/2 -translate-x-[140%] sm:-translate-x-[75%] md:-translate-x-[130%] z-30 flex items-center pointer-events-none"
               >
-                <div className="space-y-4 sm:space-y-5">
+                <div className="space-y-1.5 sm:space-y-3 md:space-y-4">
                   <OverlayReviewCard
                     name="Leonardo"
                     text="Let's sharpen this. Go bolder."
@@ -876,8 +844,7 @@ function LookFeedbackSection() {
               </motion.div>
 
               {/* Bottom speech bubble - overlapping bottom */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-10 w-[92%] sm:w-[min(520px,92%)] pointer-events-none z-20">
-
+              <div className="absolute bottom-0 left-1/2 -translate-x-4 sm:-translate-x-8 md:-translate-x-10 w-[80%] sm:w-[90%] md:w-[min(520px,92%)] pointer-events-none z-20">
                 <motion.div style={{ opacity: secondOverlayOpacity }}>
                   <OverlaySpeech>
                     How is my look today, what do you think?
@@ -903,10 +870,10 @@ function OverlayPill({
 }) {
   return (
     <div
-      className={`flex items-center gap-3 bg-white rounded-full shadow-md px-3 py-2 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
+      className={`flex items-center gap-1.5 sm:gap-2 md:gap-3 bg-white rounded-full shadow-md px-2 py-1 sm:px-3 sm:py-2 md:px-5 md:py-3 text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-900 ${className}`}
     >
       <span
-        className="h-4 w-4 sm:h-5 sm:w-5 rounded-full border border-black/10"
+        className="h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-4 md:w-4 rounded-full border border-black/10"
         style={{ backgroundColor: color }}
       ></span>
       <span>{label}</span>
@@ -923,7 +890,7 @@ function OverlayLabel({
 }) {
   return (
     <div
-      className={`bg-white rounded-[18px] shadow-md px-3 py-2 sm:px-6 sm:py-4 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
+      className={`bg-white rounded-[8px] sm:rounded-[12px] md:rounded-[16px] shadow-md px-2 py-1 sm:px-3 sm:py-2 md:px-5 md:py-3 text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-900 ${className}`}
     >
       {label}
     </div>
@@ -939,7 +906,7 @@ function OverlaySpeech({
 }) {
   return (
     <div
-      className={`bg-white rounded-[22px] shadow-lg px-4 py-3 sm:px-6 sm:py-5 text-sm sm:text-base md:text-lg text-gray-900 ${className}`}
+      className={`bg-white rounded-[12px] sm:rounded-[16px] md:rounded-[22px] shadow-lg px-2.5 py-2 sm:px-4 sm:py-3 md:px-6 md:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-900 ${className}`}
     >
       {children}
     </div>
@@ -957,9 +924,9 @@ function OverlayReviewCard({ name, text }: { name: string; text: string }) {
           : "/images/Instagram%20Post-4.png";
 
   return (
-    <div className="bg-white rounded-[20px] shadow-lg px-4 py-3 w-[210px] sm:w-[320px]">
-      <div className="flex items-center gap-3">
-        <div className="relative h-9 w-9 rounded-full overflow-hidden bg-gray-200 shrink-0">
+    <div className="bg-white rounded-[10px] sm:rounded-[14px] md:rounded-[18px] shadow-lg px-2 py-1.5 sm:px-3 sm:py-2 md:px-4 md:py-3 w-[120px] sm:w-[180px] md:w-[260px] lg:w-[300px]">
+      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
+        <div className="relative h-5 w-5 sm:h-7 sm:w-7 md:h-9 md:w-9 rounded-full overflow-hidden bg-gray-200 shrink-0">
           <Image
             src={avatarSrc}
             alt={name}
@@ -968,9 +935,9 @@ function OverlayReviewCard({ name, text }: { name: string; text: string }) {
             sizes="36px"
           />
         </div>
-        <p className="text-base sm:text-lg font-medium text-gray-900">{name}</p>
+        <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-medium text-gray-900">{name}</p>
       </div>
-      <p className="mt-2 text-sm sm:text-lg italic text-gray-800 leading-relaxed">
+      <p className="mt-0.5 sm:mt-1 md:mt-2 text-[8px] sm:text-[10px] md:text-xs lg:text-sm italic text-gray-800 leading-snug sm:leading-relaxed">
         {text}
       </p>
     </div>
@@ -1187,9 +1154,13 @@ function BentoSection() {
             variants={item}
             type="button"
             onClick={() => setActiveScreen("donation")}
-            className={`rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "donation" ? "shadow-sm" : ""
+            onMouseEnter={() => setActiveScreen("donation")}
+            className={`relative rounded-2xl bg-[#F9F9F9] md:col-span-6 md:row-span-1 flex items-center justify-center text-center p-6 cursor-pointer transition-shadow outline-none focus:ring-2 focus:ring-black/10 ${activeScreen === "donation" ? "shadow-sm" : ""
               }`}
           >
+            <span className="absolute top-2 left-2 h-6 w-6 rounded-full bg-black text-white text-xs flex items-center justify-center">
+              +
+            </span>
             <div>
               <HeartIcon className="mx-auto mb-4 h-9 w-9 md:h-10 md:w-10 text-[#262626]" />
               <p className="text-lg font-semibold text-gray-900">
